@@ -7,7 +7,7 @@
     "start": "npm-run-all -s -l build:html watch:js",
     "watch:js": "watchify index.js -o bundle.js",
     "build:js": "browserify index.js -o bundle.js",
-    "build:js:prod": "NODE_ENV=production browserify index.js > bundle.js",
+    "build:js:prod": "NODE_ENV=production browserify index.js > bundle.min.js",
     "build:html": "ejs-cli index.ejs > index.html",
     "build": "npm-run-all -s -l build:html build:js",
     "build:prod": "NODE_ENV=production npm-run-all -s -l build:html build:js:prod",
