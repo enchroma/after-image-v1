@@ -76,10 +76,28 @@ canvas {
   padding-bottom: 6px;
 }
 
+.test--complete{
+  position: absolute;
+  top: 0;
+  left: 0px;
+}
+
 .download {
+  position: absolute;
+  top: 50vh;
+  left: 0px;
   cursor: pointer;
   user-select: none;
   margin-bottom: 6px;
+  text-decoration: underline;
+}
+
+.text-area {
+  position: absolute;
+  top:0;
+  right: 20px;
+  width: 40vw;
+  height: 100vh;
 }
 
 .info {
@@ -99,6 +117,15 @@ canvas {
 
 .info--data {
   margin-left: 6px;
+}
+
+.tests{
+  display: flex;
+  margin-top:15px;
+  flex-direction: column;
+}
+.tests button{
+  margin: 0.1em 0;
 }
 
 

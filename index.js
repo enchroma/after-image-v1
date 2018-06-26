@@ -17,11 +17,11 @@ var ColorLibrary = net.brehaut.Color;
 var ctx = c.getContext('2d');
 
 var testsEl = document.querySelector('.tests');
-testsEl.style.display = 'none';
+testsEl.style.visibility = 'hidden';
 
 var testBtn = document.querySelector('.test-btn');
 testBtn.addEventListener('click', e => {
-  testsEl.style.display = testsEl.style.display === 'block' ? 'none' : 'block';
+  testsEl.style.visibility = testsEl.style.visibility === 'visible' ? 'hidden' : 'visible';
 });
 
 const createTestButton = name => {
@@ -223,7 +223,6 @@ function getScreenSize() {
   leftCIrcleX = Math.max(window.innerWidth / (HIDE_SLIDERS ? 2 : 4), radius + 20); //20 pixels minimum from the side
   c.width = window.innerWidth;
   c.height = window.innerHeight;
-  outputEl.style.left = leftCIrcleX * 2 + 'px';
   outputEl.style.width = window.innerWidth - leftCIrcleX * 2 - 70 + 'px';
 }
 
@@ -256,11 +255,7 @@ var outputItemsEl = document.querySelector('.output-items');
 var downloadEl = document.querySelector('.download');
 var testCompleteEl = document.querySelector('.test--complete');
 /*HIDE ELEMENTS*/
-downloadEl.style.visibility = 'hidden';
-testCompleteEl.style.visibility = 'hidden';
-if (HIDE_SLIDERS_DURING_TEST) {
-  outputItemsEl.style.visibility = 'hidden';
-}
+outputItemsEl.style.display = 'none';
 
 /*EXPORT CSV*/
 downloadEl.addEventListener('click', function() {
@@ -301,6 +296,8 @@ let _testIndex = 0;
 let _testSequence = [];
 
 function resetTest() {
+  outputDumpEl.style.display = 'none';
+  outputItemsEl.style.display = 'none';
   _testSequence.length = 0;
   _testIndex = 0;
 }
@@ -313,6 +310,11 @@ function beginTest() {
   drawCanvas();
 }
 
+function completeTest() {
+  _paused = true;
+  outputItemsEl.style.display = 'block';
+}
+
 function pauseTest() {
   _paused = true;
 }
@@ -322,6 +324,7 @@ function pauseTest() {
 //***********
 function setTestTimings() {
   var _time = 0;
+
   activeTest.RGB_TEST_VALUES.forEach(function(_, i) {
     _time += activeTest.STARE_DURATION;
     /*
@@ -377,8 +380,6 @@ function drawCanvas() {
   if (_paused) return;
   //check to see if completed, anc cancek out if so
   if (_testIndex > _testSequence.length - 1) {
-    testCompleteEl.style.visibility = 'visible';
-    outputItemsEl.style.visibility = 'visible';
     resetTest();
     pauseTest();
     return;
@@ -469,13 +470,9 @@ function drawCanvas() {
     //write the data out
     if (isMatchingMode) {
       captureData(_testSequence[_testIndex - 1]);
-      if (HIDE_SLIDERS_DURING_TEST) {
-        outputItemsEl.style.visibility = 'hidden';
-      }
-    } else {
-      if (HIDE_SLIDERS_DURING_TEST) {
-        outputItemsEl.style.visibility = 'visible';
-      }
+    }
+    if (_testSequence.length - 1 === _testIndex) {
+      completeTest()
     }
 
     _testIndex++;
@@ -521,7 +518,6 @@ function captureData(testObject) {
     timestamp: date,
   });
 
-  // downloadEl.style.visibility = 'visible';
   // console.log(OUTPUT_DATA);
 }
 
@@ -563,7 +559,7 @@ bSliderEl.noUiSlider.on('update', function(values) {
 window.loadConfig((err, res) => {
   tests = [...res];
   activeTest = tests[testNumber];
-  const btns = tests.map((_, i) => createTestButton(`test ${i + 1}`));
+  const btns = tests.map((test, i) => createTestButton(test.TEST_NAME));
   btns.forEach((btn, i) =>
     btn.addEventListener('click', function(e) {
       testNumber = i;
