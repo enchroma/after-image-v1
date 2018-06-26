@@ -562,9 +562,9 @@ window.loadConfig((err, res) => {
   const btns = tests.map((test, i) => createTestButton(test.TEST_NAME));
   btns.forEach((btn, i) =>
     btn.addEventListener('click', function(e) {
+      pauseTest();
       testNumber = i;
       activeTest = tests[testNumber];
-      pauseTest();
       resetTest();
       beginTest();
     }),
