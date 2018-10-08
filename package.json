@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "raf-loop": "^1.1.3",
     "xhr-request": "1.1.0"
   },
   "prettier": {

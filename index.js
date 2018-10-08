@@ -3,6 +3,7 @@ if (process.env.NODE_ENV === 'production') {
   window.BASE_PATH = '/after-image-v1/';
 }
 var helpers = require('./helpers');
+var loop = require('raf-loop');
 
 //get output div by its class
 var outputDumpEl = document.querySelector('#output');
@@ -179,16 +180,13 @@ function downloadCSV(obj) {
   });
   if (csv == null) return;
   var date = new Date();
-  date.toLocaleString(
-    'en-us',
-    {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    },
-  );
+  date.toLocaleString('en-us', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   outputDumpEl.style.display = 'block';
   outputDumpEl.innerHTML = csv;
@@ -295,6 +293,7 @@ let OUTPUT_DATA = [];
 // internal variables
 //***********
 let _paused = false;
+let _engine = false;
 let _testIndex = 0;
 let _testSequence = [];
 
@@ -302,15 +301,16 @@ function resetTest() {
   outputDumpEl.style.display = 'none';
   outputItemsEl.style.display = 'none';
   _testSequence.length = 0;
+  _timeElapsed = 0;
   _testIndex = 0;
 }
 
 function beginTest() {
-  _timeElapsed = performance.now();
-  _paused = false;
   setTestTimings();
   getScreenSize();
-  drawCanvas();
+  _timeElapsed = 0;
+  console.log(_testSequence);
+  _paused = false;
 }
 
 function completeTest() {
@@ -377,8 +377,7 @@ function setTestTimings() {
     we measure elapsed time at the end to step through the timings
   */
 //***********
-var _cc = 0;
-function drawCanvas() {
+_engine = loop(function(dt) {
   var now = performance.now();
   if (_paused) return;
   //check to see if completed, anc cancek out if so
@@ -449,7 +448,7 @@ function drawCanvas() {
         window.innerHeight / 2, //y
         _cos * 2.5 + 2.5, //radiusX
         _sin * 2.5 + 2.5, //radiusY
-        (45 * Math.PI) / 180,
+        45 * Math.PI / 180,
         0,
         2 * Math.PI,
       );
@@ -470,7 +469,8 @@ function drawCanvas() {
   /*
     Check timings
     */
-  _timeElapsed = now - _timeElapsed;
+  //console.log('_timeElapsed', now);
+  _timeElapsed += dt;
   if (_timeElapsed > testObject.endTime) {
     //write the data out
     if (isMatchingMode) {
@@ -482,28 +482,18 @@ function drawCanvas() {
 
     _testIndex++;
   }
-  _cc++;
-  if (_cc < 300) {
-  //  requestAnimationFrame(drawCanvas);
-  }
-
-  //loop!!
-  requestAnimationFrame(drawCanvas);
-}
+});
 
 function captureData(testObject) {
   var date = new Date();
-  date.toLocaleString(
-    'en-us',
-    {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    },
-  );
+  date.toLocaleString('en-us', {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
   OUTPUT_DATA.push({
     Test_Type: 'AF',
     R: testObject.leftCircleRGB[0],
@@ -579,4 +569,5 @@ window.loadConfig((err, res) => {
     }),
   );
   beginTest();
+  _engine.start();
 });
