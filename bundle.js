@@ -149,13 +149,12 @@ window.loadConfig = function (cb) {
 };
 
 },{"xhr-request":21}],2:[function(require,module,exports){
-(function (process){
 'use strict';
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 window.BASE_PATH = '';
-if (process.env.NODE_ENV === 'production') {
+if ("production" === 'production') {
   window.BASE_PATH = '/after-image-v1/';
 }
 var helpers = require('./helpers');
@@ -709,8 +708,7 @@ window.loadConfig(function (err, res) {
   _engine.start();
 });
 
-}).call(this,require('_process'))
-},{"./helpers":1,"_process":13,"raf-loop":15}],3:[function(require,module,exports){
+},{"./helpers":1,"raf-loop":15}],3:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
