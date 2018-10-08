@@ -12,7 +12,8 @@ var outputEl = document.querySelector('.output');
 var c = document.getElementById('myCanvas');
 c.width = window.innerWidth;
 c.height = window.innerHeight;
-
+console.log(window.innerHeight);
+console.log(window.innerWidth);
 var ColorLibrary = net.brehaut.Color;
 var ctx = c.getContext('2d');
 
@@ -202,7 +203,7 @@ function downloadCSV(obj) {
   link = document.createElement('a');
   link.setAttribute('href', data);
   link.setAttribute('download', filename);
-  link.click();
+  // link.click();
 }
 
 //**************
@@ -221,6 +222,8 @@ var CIRCLE_RADIUS_DEVISOR = 3;
 function getScreenSize() {
   radius = Math.min(Math.min(window.innerWidth, window.innerHeight) / CIRCLE_RADIUS_DEVISOR, 300); // value to scale the circles, max radius of 300
   leftCIrcleX = Math.max(window.innerWidth / (HIDE_SLIDERS ? 2 : 4), radius + 20); //20 pixels minimum from the side
+  console.log(window.innerHeight);
+  console.log(window.innerWidth);
   c.width = window.innerWidth;
   c.height = window.innerHeight;
   outputEl.style.width = window.innerWidth - leftCIrcleX * 2 - 70 + 'px';
@@ -374,7 +377,7 @@ function setTestTimings() {
     we measure elapsed time at the end to step through the timings
   */
 //***********
-
+var _cc = 0;
 function drawCanvas() {
   var now = performance.now();
   if (_paused) return;
@@ -390,6 +393,8 @@ function drawCanvas() {
   //short hand access
   var isMatchingMode = testObject.isMatchingMode;
   var isResetingMode = testObject.isResetingMode;
+
+  // console.log(testObject);
   /*
     Wipe the canvas
     */
@@ -472,10 +477,14 @@ function drawCanvas() {
       captureData(_testSequence[_testIndex - 1]);
     }
     if (_testSequence.length - 1 === _testIndex) {
-      completeTest()
+      completeTest();
     }
 
     _testIndex++;
+  }
+  _cc++;
+  if (_cc < 300) {
+  //  requestAnimationFrame(drawCanvas);
   }
 
   //loop!!
@@ -522,7 +531,7 @@ function captureData(testObject) {
 }
 
 window.addEventListener('resize', function(e) {
-  getScreenSize();
+  // getScreenSize();
 });
 
 rSliderEl.noUiSlider.on('update', function(values) {
