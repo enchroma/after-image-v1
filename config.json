@@ -1,9 +1,9 @@
 [
 {
   "TEST_NAME": "RGRR",
-  "USE_HSL": false,
-  "STARE_DURATION": 2000,
-  "MATCH_DURATION": 2000,
+  "USE_HSL": true,
+  "STARE_DURATION": 10000,
+  "MATCH_DURATION": 10000,
   "RESET_DURATION": 1000,
   "WHITE": [255, 255, 255],
   "BACKGROUND_GREY": [128, 128, 128],
@@ -16,7 +16,7 @@
 },
 {
   "TEST_NAME": "BRBR",
-  "USE_HSL": false,
+  "USE_HSL": true,
   "STARE_DURATION": 3000,
   "MATCH_DURATION": 3000,
   "RESET_DURATION": 2000,
@@ -31,7 +31,7 @@
 },
 {
   "TEST_NAME": "BBGG",
-  "USE_HSL": false,
+  "USE_HSL": true,
   "STARE_DURATION": 30000,
   "MATCH_DURATION": 20000,
   "RESET_DURATION": 10000,
