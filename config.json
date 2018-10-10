@@ -2,14 +2,14 @@
 {
   "TEST_NAME": "RGRR",
   "USE_HSL": true,
-  "STARE_DURATION": 10000,
+  "STARE_DURATION": 20000,
   "MATCH_DURATION": 10000,
-  "RESET_DURATION": 1000,
+  "RESET_DURATION": 10000,
   "WHITE": [255, 255, 255],
   "BACKGROUND_GREY": [128, 128, 128],
   "RGB_TEST_VALUES": [
     [255, 87, 87],
-    [87, 255, 87],
+    [255, 87, 87],
     [255, 87, 87],
     [255, 87, 87]
   ]
