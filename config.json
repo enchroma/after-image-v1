@@ -2,45 +2,45 @@
 {
   "TEST_NAME": "RRRR",
   "USE_HSL": true,
-  "STARE_DURATION": 20000,
-  "MATCH_DURATION": 10000,
+  "STARE_DURATION": 45000,
+  "MATCH_DURATION": 15000,
   "RESET_DURATION": 10000,
   "WHITE": [255, 255, 255],
   "BACKGROUND_GREY": [128, 128, 128],
   "RGB_TEST_VALUES": [
-    [255, 87, 87],
-    [255, 87, 87],
-    [255, 87, 87],
-    [255, 87, 87]
+    [255, 25, 25],
+    [255, 25, 25],
+    [255, 25, 25],
+    [255, 25, 25]
   ]
 },
 {
   "TEST_NAME": "GGGG",
   "USE_HSL": true,
-  "STARE_DURATION": 20000,
-  "MATCH_DURATION": 10000,
+  "STARE_DURATION": 45000,
+  "MATCH_DURATION": 15000,
   "RESET_DURATION": 10000,
   "WHITE": [200, 200, 200],
   "BACKGROUND_GREY": [128, 128, 128],
   "RGB_TEST_VALUES": [
-    [87, 255, 87],
-    [87, 255, 87],
-    [87, 255, 87],
-    [87, 255, 87]
+    [0, 255, 15],
+    [0, 255, 15],
+    [0, 255, 15],
+    [0, 255, 15]
   ]
 },
 {
   "TEST_NAME": "MMMMM",
   "USE_HSL": true,
-  "STARE_DURATION": 30000,
-  "MATCH_DURATION": 20000,
+  "STARE_DURATION": 45000,
+  "MATCH_DURATION": 15000,
   "RESET_DURATION": 10000,
   "WHITE": [200, 200, 200],
   "BACKGROUND_GREY": [147, 147, 147],
   "RGB_TEST_VALUES": [
-    [255, 87, 255],
-    [255, 87, 255],
-    [255, 87, 255],
-    [255, 87, 255]
+    [255, 50, 255],
+    [255, 50, 255],
+    [255, 50, 255],
+    [255, 50, 255]
   ]
 }]
