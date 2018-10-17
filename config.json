@@ -43,18 +43,4 @@
     [255, 50, 255],
     [255, 50, 255]
   ]
-},
-  "TEST_NAME": "RDESAT",
-  "USE_HSL": true,
-  "STARE_DURATION": 45000,
-  "MATCH_DURATION": 15000,
-  "RESET_DURATION": 10000,
-  "WHITE": [255, 255, 255],
-  "BACKGROUND_GREY": [128, 128, 128],
-  "RGB_TEST_VALUES": [
-    [255, 125, 125],
-    [255, 125, 125],
-    [255, 125, 125],
-    [255, 125, 125]
-  ] 
 }]
