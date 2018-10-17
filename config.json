@@ -45,6 +45,21 @@
   ]
 },
 {
+  "TEST_NAME": "GDESAT",
+  "USE_HSL": true,
+  "STARE_DURATION": 45000,
+  "MATCH_DURATION": 15000,
+  "RESET_DURATION": 10000,
+  "WHITE": [200, 200, 200],
+  "BACKGROUND_GREY": [128, 128, 128],
+  "RGB_TEST_VALUES": [
+    [125, 255, 125],
+    [125, 255, 125],
+    [125, 255, 125],
+    [125, 255, 125]
+  ]
+},
+{
   "TEST_NAME": "MMMMM",
   "USE_HSL": true,
   "STARE_DURATION": 45000,
@@ -57,5 +72,20 @@
     [255, 50, 255],
     [255, 50, 255],
     [255, 50, 255]
+  ]
+},
+{
+  "TEST_NAME": "MDESAT",
+  "USE_HSL": true,
+  "STARE_DURATION": 45000,
+  "MATCH_DURATION": 15000,
+  "RESET_DURATION": 10000,
+  "WHITE": [200, 200, 200],
+  "BACKGROUND_GREY": [147, 147, 147],
+  "RGB_TEST_VALUES": [
+    [255, 125, 255],
+    [255, 125, 255],
+    [255, 125, 255],
+    [255, 125, 255]
   ]
 }]
